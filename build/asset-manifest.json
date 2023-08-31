@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6e949640.css",
+    "main.js": "/static/js/main.d9d2211c.js",
+    "static/media/catagory page banner.png": "/static/media/catagory page banner.3e632ea72e5bdff40c9b.png",
+    "static/media/product page banner.png": "/static/media/product page banner.ed44609c8c1f20ffc4d1.png",
+    "static/media/cyber-monday-shopping-sales.jpg": "/static/media/cyber-monday-shopping-sales.b9f5abbca5bb68d17906.jpg",
+    "static/media/hair.png": "/static/media/hair.33a93e35877ee544883d.png",
+    "static/media/product banner 1.png": "/static/media/product banner 1.246ec6b64bc343a646c3.png",
+    "static/media/face.png": "/static/media/face.3d84735de5bc28af5db0.png",
+    "static/media/beard.png": "/static/media/beard.47a4b0e541a38ecf540d.png",
+    "static/media/product banner 2.png": "/static/media/product banner 2.a05f8091d691d8f64ad6.png",
+    "static/media/aj2.jpg": "/static/media/aj2.d64ed69530591031414d.jpg",
+    "static/media/blacklogo.png": "/static/media/blacklogo.f8416d377a506e1dfd1e.png",
+    "static/media/logo.png": "/static/media/logo.7e585a757186f14e018b.png",
+    "static/media/1.png": "/static/media/1.90897ece7a59d67faeff.png",
+    "static/media/2.png": "/static/media/2.1ba92c1fc32c8d589895.png",
+    "static/media/3.png": "/static/media/3.dc82fd124c9066a27662.png",
+    "static/media/chemical.png": "/static/media/chemical.0aafdc86d7334a02aa5a.png",
+    "static/media/Profile.png": "/static/media/Profile.697fdcd21f6d157b9073.png",
+    "static/media/sls-free.png": "/static/media/sls-free.d733ad37dc1c1b16c0ba.png",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/index.html",
+    "main.6e949640.css.map": "/static/css/main.6e949640.css.map",
+    "main.d9d2211c.js.map": "/static/js/main.d9d2211c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e949640.css",
+    "static/js/main.d9d2211c.js"
+  ]
+}
