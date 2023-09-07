@@ -69,7 +69,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://13.233.212.52:7000",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
