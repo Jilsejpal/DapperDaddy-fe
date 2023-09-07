@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.DATABASE_URL,
+  baseURL: "http://13.233.212.52:7000",
   timeout: 5000,
   timeoutErrorMessage: "Timeout! something went wrong",
 });
