@@ -2,7 +2,12 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
-import { Typography, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import {
+  Typography,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@material-ui/core";
 import { useAlert } from "react-alert";
 import {
   CardNumberElement,
@@ -18,6 +23,7 @@ import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
 import { useNavigate } from "react-router";
+import axiosInstance from "../../actions/axiosInstance";
 
 const Payment = () => {
   const history = useNavigate();
@@ -33,11 +39,14 @@ const Payment = () => {
   const { user } = useSelector((state) => state.user);
   const { error, discountedPrice } = useSelector((state) => state.applycoupon); // Access discountedPrice from Redux store
 
-
   const [paymentMethod, setPaymentMethod] = useState("stripe");
 
   const paymentData = {
-    amount: Math.round(discountedPrice !== null ? discountedPrice * 100 : orderInfo.totalPrice * 100),
+    amount: Math.round(
+      discountedPrice !== null
+        ? discountedPrice * 100
+        : orderInfo.totalPrice * 100
+    ),
   };
 
   const order = {
@@ -46,7 +55,8 @@ const Payment = () => {
     itemsPrice: orderInfo.subtotal,
     taxPrice: orderInfo.tax,
     shippingPrice: orderInfo.shippingCharges,
-    totalPrice: discountedPrice !== null ? discountedPrice : orderInfo.totalPrice,
+    totalPrice:
+      discountedPrice !== null ? discountedPrice : orderInfo.totalPrice,
     paymentMethod, // Add paymentMethod to the order object
   };
 
@@ -63,7 +73,11 @@ const Payment = () => {
             "Content-Type": "application/json",
           },
         };
-        const response = await axios.post("/api/v1/payment/process", paymentData, config);
+        const response = await axiosInstance.post(
+          "/api/v1/payment/process",
+          paymentData,
+          config
+        );
 
         if (response && response.data) {
           const client_secret = response.data.client_secret;
@@ -121,10 +135,13 @@ const Payment = () => {
     }
   };
 
-
   const getButtonText = () => {
     if (paymentMethod === "stripe") {
-      return `Pay - ₹${discountedPrice !== null ? discountedPrice : (orderInfo && orderInfo.totalPrice)}`;
+      return `Pay - ₹${
+        discountedPrice !== null
+          ? discountedPrice
+          : orderInfo && orderInfo.totalPrice
+      }`;
     } else if (paymentMethod === "cod") {
       return "Cash on Delivery";
     }
@@ -144,7 +161,7 @@ const Payment = () => {
       <CheckoutSteps activeStep={2} />
       <div className="paymentContainer">
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-          <Typography >Choose Payment Method:</Typography>
+          <Typography>Choose Payment Method:</Typography>
           <RadioGroup
             aria-label="paymentMethod"
             name="paymentMethod"

@@ -26,62 +26,56 @@ import {
 
 import axios from "axios";
 import { clearCart } from "./cartAction";
+import axiosInstance from "./axiosInstance";
 
+export const createOrder =
+  (order, paymentType, stripe) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: CREATE_ORDER_REQUEST });
 
+      // Make API call to create order
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
+      const { data } = await axiosInstance.post(
+        "/api/v1/order/new",
+        order,
+        config
+      );
 
-export const createOrder = (order, paymentType, stripe) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: CREATE_ORDER_REQUEST });
+      // Apply coupon to the order here
+      if (order.couponCode) {
+        dispatch({
+          type: ORDER_APPLY_COUPON,
+          payload: data.couponDiscount, // Assuming the API response provides the discount amount
+        });
+      }
 
-    // Make API call to create order
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+      if (paymentType === "stripe") {
+        // ... stripe payment processing
+      } else if (paymentType === "cod") {
+        // ... cash on delivery
+      }
 
-    const { data } = await axios.post("/api/v1/order/new", order, config);
-
-    // Apply coupon to the order here
-    if (order.couponCode) {
+      dispatch({ type: CREATE_ORDER_SUCCESS, payload: data.order });
+      dispatch(clearCart());
+    } catch (error) {
       dispatch({
-        type: ORDER_APPLY_COUPON,
-        payload: data.couponDiscount, // Assuming the API response provides the discount amount
+        type: CREATE_ORDER_FAIL,
+        payload: error.response.data.message,
       });
     }
-
-    if (paymentType === "stripe") {
-      // ... stripe payment processing
-    } else if (paymentType === "cod") {
-      // ... cash on delivery
-    }
-
-    dispatch({ type: CREATE_ORDER_SUCCESS, payload: data.order });
-    dispatch(clearCart())
-  } catch (error) {
-    dispatch({
-      type: CREATE_ORDER_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-
-
-
-
-
-
-
-
+  };
 
 // My Orders
 export const myOrders = () => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDERS_REQUEST });
 
-    const { data } = await axios.get("/api/v1/orders/me");
+    const { data } = await axiosInstance.get("/api/v1/orders/me");
 
     dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
@@ -97,7 +91,7 @@ export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST });
 
-    const { data } = await axios.get("/api/v1/admin/orders");
+    const { data } = await axiosInstance.get("/api/v1/admin/orders");
 
     dispatch({ type: ALL_ORDERS_SUCCESS, payload: data });
   } catch (error) {
@@ -108,7 +102,6 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
-
 // Cancel order by user
 export const cancelOrder = (orderId) => async (dispatch, getState) => {
   try {
@@ -118,11 +111,15 @@ export const cancelOrder = (orderId) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
 
-    const { data } = await axios.put(`/api/v1/order/cancel/${orderId}`, {}, config);
+    const { data } = await axiosInstance.put(
+      `/api/v1/order/cancel/${orderId}`,
+      {},
+      config
+    );
 
     dispatch({
       type: CANCEL_ORDER_SUCCESS,
@@ -136,9 +133,6 @@ export const cancelOrder = (orderId) => async (dispatch, getState) => {
   }
 };
 
-
-
-
 // Update Order
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
@@ -149,7 +143,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `/api/v1/admin/order/${id}`,
       order,
       config
@@ -169,7 +163,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/admin/order/${id}`);
+    const { data } = await axiosInstance.delete(`/api/v1/admin/order/${id}`);
 
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
@@ -185,7 +179,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/order/${id}`);
+    const { data } = await axiosInstance.get(`/api/v1/order/${id}`);
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
   } catch (error) {
