@@ -23,10 +23,11 @@ const Cart = () => {
 
   const decreaseQuantity = (id, quantity, stock) => {
     const newQty = quantity - 1;
-    if (stock >= quantity) {
-      return;
+    if (newQty) {
+      dispatch(addItemsToCart(id, newQty));
+    } else {
+      dispatch(removeItemsFromCart(id, newQty));
     }
-    dispatch(removeItemsFromCart(id, newQty));
   };
 
   const deleteCartItems = (id) => {
