@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6e949640.css",
-    "main.js": "/static/js/main.a7959a99.js",
+    "main.js": "/static/js/main.5a3e5d3a.js",
     "static/media/catagory page banner.png": "/static/media/catagory page banner.3e632ea72e5bdff40c9b.png",
     "static/media/product page banner.png": "/static/media/product page banner.ed44609c8c1f20ffc4d1.png",
     "static/media/cyber-monday-shopping-sales.jpg": "/static/media/cyber-monday-shopping-sales.b9f5abbca5bb68d17906.jpg",
@@ -24,10 +24,10 @@
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
     "main.6e949640.css.map": "/static/css/main.6e949640.css.map",
-    "main.a7959a99.js.map": "/static/js/main.a7959a99.js.map"
+    "main.5a3e5d3a.js.map": "/static/js/main.5a3e5d3a.js.map"
   },
   "entrypoints": [
     "static/css/main.6e949640.css",
-    "static/js/main.a7959a99.js"
+    "static/js/main.5a3e5d3a.js"
   ]
 }
