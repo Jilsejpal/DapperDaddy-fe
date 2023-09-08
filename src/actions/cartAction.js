@@ -4,7 +4,6 @@ import {
   SAVE_SHIPPING_INFO,
   CLEAR_CART,
 } from "../constants/cartConstants";
-import axios from "axios";
 import axiosInstance from "./axiosInstance";
 
 // Add to Cart

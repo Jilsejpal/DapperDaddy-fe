@@ -36,7 +36,6 @@ import {
   USER_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/UserConstants.js";
-import axios from "axios";
 import axiosInstance from "./axiosInstance.js";
 
 // Login

@@ -42,7 +42,6 @@ import UpdateUser from "./components/admin/UpdateUser";
 import ProductReviews from "./components/admin/ProductReviews.js";
 import { loadUser } from "./actions/userAction";
 
-import axios from "axios";
 // import NotFound from './components/layout/Not Found/NotFound';
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";

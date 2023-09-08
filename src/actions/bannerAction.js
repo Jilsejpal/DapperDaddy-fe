@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {
   NEW_BANNER_REQUEST,
   NEW_BANNER_SUCCESS,

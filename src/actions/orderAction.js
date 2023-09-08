@@ -24,7 +24,6 @@ import {
   CLEAR_ERRORS,
 } from "../constants/orderConstants";
 
-import axios from "axios";
 import { clearCart } from "./cartAction";
 import axiosInstance from "./axiosInstance";
 
